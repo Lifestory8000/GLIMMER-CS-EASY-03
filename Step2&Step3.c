@@ -101,7 +101,7 @@ void preorderTraversal(TreeNode *root){
     if(root==NULL){
         return;
     }
-    Stack *stack=createStack(114514);
+    Stack *stack=createStack(100);
     push(stack, root);
     while(isEmpty(stack)!=1){
         TreeNode *a=pop(stack);
