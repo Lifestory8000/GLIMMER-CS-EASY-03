@@ -132,6 +132,10 @@ int main(void){
     set_root(tree, 1);
     set_left_child(tree, 1, 2);
     set_right_child(tree, 1, 3);
+    set_left_child(tree, 2, 4);
+    set_right_child(tree, 2, 5);
+    set_left_child(tree, 3, 6);
+    set_right_child(tree, 3, 7);
     level_order(tree);
     free(tree);
     return 0;
