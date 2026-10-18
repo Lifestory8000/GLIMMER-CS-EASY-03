@@ -56,7 +56,6 @@ int depth(TreeNode *root, int current_depth, int max_depth){
     int b=max_depth;
     int c=current_depth;
     int d=current_depth;
-    max_depth=a>b?a:b;
     if (root == NULL) {
     return max_depth;
 }
