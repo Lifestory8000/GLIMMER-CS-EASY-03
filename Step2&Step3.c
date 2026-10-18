@@ -24,9 +24,7 @@ void doubleadd(int a, int b, TreeNode *node){
             }   
             if(node->right==NULL){
                 node->right=create_node(b);
-            }else if(node->right!=NULL){
-                node->right->data=b;
-            }        
+            }
             return;
 }
 void preorder(TreeNode *node){
