@@ -70,6 +70,10 @@ bool set_left_child(SeqBiTree *tree, int parent_node, int value)
         printf("no such father node.\n");
         return false;
     }
+ if(tree->nodes[2*i].used!=false){
+        printf("Left child had already existed.\n");
+        return false;
+    }
     tree->nodes[2*i].data=value;
     tree->nodes[2*i].used=true;
     tree->size++;
@@ -93,6 +97,10 @@ bool set_left_child(SeqBiTree *tree, int parent_node, int value)
     }
     if(tree->nodes[i].used!=true){
         printf("no such father node.\n");
+        return false;
+    }
+ if(tree->nodes[2*i+1].used!=false){
+        printf("Right child had already existed.\n");
         return false;
     }
     tree->nodes[2*i+1].data=value;
