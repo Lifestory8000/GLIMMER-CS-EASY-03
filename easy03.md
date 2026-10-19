@@ -9,8 +9,8 @@ typedef struct treenode{
 }tree;
 ````
 ### 在这一题中我们只讨论二叉树。请你思考，二叉树在c语言中应该如何存储？二叉树有哪些特点？
-- 可以用数表存储(顺序存储？)也可以用结构体加指针存储。
--  每一个节点最多有两个孩子（？）（左子树，右子树），二叉树要么是NULL，要么由根节点和它的两个孩子构成。没有孩子的节点叫做叶子。
+- 可以用数表存储(顺序存储)也可以用结构体加指针存储。
+-  每一个节点最多有两个孩子（左子树，右子树），二叉树要么是NULL，要么由根节点和它的两个孩子构成。没有孩子的节点叫做叶子。
 
 ## 使用顺序表完成二叉树操作
 #### 复制题目代码
@@ -46,15 +46,15 @@ typedef struct {
 void init_tree(SeqBiTree *tree){
     tree->size=0;\\让size=0，意思就是“看起来一个节点也没有”
     for(int i=0;MAX_TREE_SIZE>i;i++ ){\\用循环来使得每一个元素的data和bool值都被定义
-        tree->nodes[i].data=0;\\访问tree内部的nodes[i](这里问了deepseek)，再访问nodes[i]这个元素的data，让它=0
-        tree->nodes[i].used=false;\\同理，让这个元素的布尔值等于false（意思这个节点实际上没有用？没有被占用？）
+        tree->nodes[i].data=0;\\访问tree内部的nodes[i]，再访问nodes[i]这个元素的data，让它=0
+        tree->nodes[i].used=false;\\同理，让这个元素的布尔值等于false（意思这个节点实际上没有被占用）
     }
  }
 ````
-- 2(这里本来用的是nodes[0]，但是后面问过ai之后就明白了)
+- 2
 ````
 bool set_root(SeqBiTree *tree, int value) {
-    if(tree==NULL){//先检查是不是空树（？）
+    if(tree==NULL){//先检查是不是空树
         return false;
     }
     if(tree->nodes[1].used!=false){//检查是不是已经被占用了
@@ -123,7 +123,7 @@ bool set_right_child(SeqBiTree *tree, int parent_node, int value)
 - 5
 ````
 void level_order(SeqBiTree *tree){
-    if(tree==NULL){\\检测是否为空树，但是AI建议加一个|| size==0
+    if(tree==NULL || size==0){\\检测是否为空树
         return;
     }
     int a=1;
@@ -173,7 +173,7 @@ int main(void){\\注释：这里的doubleadd就是同时创建左右孩子并且
 ````
 ### 完成树的创建以后，你会自然想到，该怎样验证这棵树是否创建正确。要想完成验证，最简单的办法就是打印这棵树。
 ### 请你思考，我们应该怎样打印一颗链二叉树呢？只使用简单的for循环无法实现这个打印函数。请你讲讲问什么无法实现。
-- ①：我的想法：参数含有``root``，打印root内部的data后换行，接着打印它依次左孩子和右孩子的data再换行，接着将root变更为两个（即它的左右孩子？？）重复这个操作。
+- ①：我的想法：参数含有``root``，打印root内部的data后换行，接着打印它依次左孩子和右孩子的data再换行，接着将root变更为两个（即它的左右孩子）重复这个操作。
 -  for含有初始条件，迭代，运行条件；每一个节点都可能一分为2，迭代没法通过简单的组数加一来解决其可能含有两个孩子的问题。for循环适合线性遍历，而二叉树的节点数量呈现指数增长态势，此时用for循环显得不合适。
 # step3.递归
 ### 请你自行了解什么是二叉树的前序遍历，中序遍历，后序遍历。然后在上面的链二叉树代码文件中，实现这三个函数。并在主函数中调用这三个函数打印遍历结果。
@@ -186,7 +186,7 @@ void preorder(TreeNode *node){
     printf("%d | ", node->data);\\访问根
     preorder(node->left);\\访问左孩子（在内部开始递归，先访问根，再访问左孩子……直到根=NULL）
     preorder(node->right);\\访问右孩子
-}
+} 
 void inorder(TreeNode *node){
     if(node==NULL){
         return;
@@ -297,31 +297,3 @@ void preorderTraversal(TreeNode *root){
 }
 ````
 - 所有函数均移植入“step2&step3”
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
